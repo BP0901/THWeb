@@ -7,10 +7,10 @@ class Product {
     private int $productId;
     private string $productName;
     private string $productDesc;
-    private $priceCurrent;
+    private float $priceCurrent;
     private string $img;
     private float $priceSale;
-    private string $category;
+    private int $category;
 
     public function __construct($productName, $productDesc, $priceCurrent, $img, $priceSale, $category, $productId = 0) {
         $this->productId = $productId;
@@ -81,14 +81,14 @@ class Product {
     public function insertProduct() {
         $dbCon = new MySQLUtils();
         $query = "INSERT INTO product (product_name, product_info, product_price, product_img, product_price_discount, category) 
-        VALUES (:product_name, :product_desc, :price_current, :img, :price_sale, :category_id";
+        VALUES (:product_name, :product_desc, :price_current, :img, :price_sale, :category_id)";
         $param = [
             ":product_name" => $this->productName,
             ":product_desc" => $this->productDesc,
             ":price_current" => $this->priceCurrent,
             ":img" => $this->img,
             ":price_sale" => $this->priceSale,
-            ":category_id" => $this->category,
+            ":category_id" => $this->category
         ];
         $dbCon->insertData($query, $param);
         $dbCon->disconnect();
@@ -104,7 +104,7 @@ class Product {
 
     public function getProductById() {
         $dbCon = new MySQLUtils();
-        $query = "select * from product where product_id = :id";
+        $query = "select * from product where id = :id";
         $param = [":id" => $this->productId];
         $data = $dbCon->getData($query, $param);
         $dbCon->disconnect();
@@ -120,7 +120,7 @@ class Product {
             product_img = :img, 
             product_price_discount = :price_sale, 
             category  = :category_id
-            where product_id = :id";
+            where id = :id";
         $param = [
             ":product_name" => $this->productName,
             ":product_desc" => $this->productDesc,
@@ -137,9 +137,9 @@ class Product {
 
     public function deleteProduct() {
         $dbCon = new MySQLUtils();
-        $query = "delete from product where product_id = :id";
+        $query = "delete from product where id = :id";
         $param = [":id" => $this->productId];
-        $count = $dbCon->getData($query, $param);
+        $count = $dbCon->deleteData($query, $param);
         $dbCon->disconnect();
         return $count;
     }

@@ -60,7 +60,7 @@
                                                 <?php echo number_format($data['list'][$i]['product_price']) ?><sup>đ</sup>
                                             </td>
                                             <td id="proddiscount<?php echo $i; ?>">
-                                                <?php echo number_format($data['list'][$i]['product_price_discount']) ?>%
+                                                <?php echo number_format($data['list'][$i]['product_price_discount']) ?><sup>đ</sup>
                                             </td>
                                             <td id="prodcategory<?php echo $i; ?>">
                                                 <?php
@@ -79,8 +79,11 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                         <a id="view<?php echo $i; ?>" class="dropdown-item" href="#"><i class="dw dw-eye"></i> Chi tiết</a>
-                                                        <a id="edit<?php echo $i; ?>" class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh sửa</a>
-                                                        <!-- <a class="dropdown-item" href="?id=<?php echo $data['list'][$i]['product_id'] ?>&&action=delete"><i class="dw dw-delete-3"></i> Xóa</a> --> --> -->
+                                                        <button
+                                                            id="edit<?php echo $i; ?>" 
+                                                            data-toggle="modal" data-target="#edit"
+                                                            class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh sửa</button>
+                                                        <a id="delete<?php echo $i; ?>" class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Xóa</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -111,9 +114,11 @@
                     var cate = $('#prodcategory<?php echo $i; ?>').text().trim();
                     var priceText = $('#prodprice<?php echo $i; ?>').text().trim();
                     var priceNum = priceText.substring(0, priceText.length -1);
+                    priceNum = priceNum.replace(",","");
                     var discount = $('#proddiscount<?php echo $i; ?>').text().trim();
-                    var disNum = parseInt(discount.substring(0, discount.length -1));
-                    // alert(cate);
+                    var disNum = discount.substring(0, discount.length -1);
+                    disNum = disNum.replace(",","");
+                    // alert(disNum);
                     $('#edit').modal('show');//load modal
                     $('#eprodid').val(id);
                     $('#eprodname').val(name);
@@ -143,6 +148,18 @@
                     $('#vprodgenre').text(genre);
                 });
             });
+
+            //load view modals 
+            $(document).ready(function () {
+                $(document).on('click', '#delete<?php echo $i; ?>', function () {
+                    var id = $('#prodid<?php echo $i; ?>').text().trim();// get product id
+                    var name = $('#prodname<?php echo $i; ?>').text().trim();// get product name
+                    $('#delete').modal('show');//load modal
+                    $('#dprodid').val(id);
+                    $('#dprodname').text(name);
+                });
+            });
+
         <?php } ?>
     </script>
 </html>

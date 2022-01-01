@@ -77,10 +77,10 @@ include_once '../model/Category.php';
 
                         <div class="form-group input-group">
                             <span class="input-group-addon" style="width:150px;">Giá:</span>
-                            <input type="text" name="txt_price" class="form-control" id="eprodprice">
+                            <input type="number" name="txt_price" class="form-control" id="eprodprice">
                         </div>
                         <div class="form-group input-group">
-                            <span class="input-group-addon" style="width:150px;">Giá giảm(%):</span>
+                            <span class="input-group-addon" style="width:150px;">Giá giảm:</span>
                             <input type="number" name="txt_discount" class="form-control" id="eproddiscount">
                         </div>
                         <div class="form-group input-group">
@@ -166,23 +166,30 @@ include_once '../model/Category.php';
     </div>
 </div>
 
-<!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<!-- delete Modal-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="../controller/ProductController.php" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <h4 class="modal-title text-center" id="myModalLabel">Chỉnh thông tin sản phẩm</h4>
+                </div> -->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="form-group input-group">
+                            <input type="text" name="txt_id" class="form-control" id="dprodid" hidden>
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon" style="width:150px;">Bạn muốn xóa: </span>
+                            <span id="dprodname" class="input-group-addon" ></span>
+                        </div>
+                    </div> 
+                </div>      
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Bỏ</button>
+                    <button type="submit" name="grp_btn_product" value="delete" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> </i> Xóa</button>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
 </div>

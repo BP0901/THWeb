@@ -67,6 +67,25 @@ if (count($_GET) > 0) {
 }
 
 switch ($product_action) {
+    case 'delete':
+        $id = $_POST['txt_id'];
+        $deletePro = new Product("", "", 0, "", 0, 0, $id);
+         // Lấy product muốn xóa
+         $productDelete = $productController->getProductById($deletePro);
+         $count = $productController->deleteProduct($deletePro);
+         if ($count > 0) {
+             unlink('../view' . ltrim($productDelete[0]['img'], '.'));
+             echo '<script>
+                         alert("Xóa thành công");
+                     </script>';
+             header("Location: ProductController.php");
+         } else {
+             echo '<script>
+                         alert("Xóa không thành công");
+                     </script>';
+             header("Location: ProductController.php");
+         }
+        break;
     case 'add':
         $product_name = trim($_POST['txt_name_pro']);
         $product_desc = trim($_POST['txt_desc_pro']);
@@ -114,7 +133,7 @@ switch ($product_action) {
             if ($newImg['name'] == "") {
                 $clonePro = new Product("", "", 0, "", 0, 0, $proId);
                 $oldPro = $productController->getProductById($clonePro);
-                $oldImg = $oldPro[0]['img'];
+                $oldImg = $oldPro[0]['product_img'];
                 $updatePro = new Product($newName, $newDesc, $newPrice, $oldImg, $newDiscount, $newCate, $proId);
                 $count = $productController->updateProduct($updatePro);
 
@@ -130,7 +149,7 @@ switch ($product_action) {
                             </script>';
                 }
             }
-            // Trường hợp có hình ảnh
+            //Trường hợp có hình ảnh
             else {
                 // Lấy link img cũ để xóa hình cũ
                 $clonePro = new Product("", "", 0, "", 0, 0, $proId);
@@ -161,7 +180,8 @@ switch ($product_action) {
                             </script>';
                 }
             }
-        } else {
+         } 
+        else {
             echo '<script>
                     alert("' . $err . '");
                     window.history.back();
