@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 28, 2021 lúc 03:36 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.3.33
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th1 02, 2022 lúc 03:05 PM
+-- Phiên bản máy phục vụ: 5.7.31
+-- Phiên bản PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,12 @@ USE `dbthweb`;
 -- Cấu trúc bảng cho bảng `categories`
 --
 
-CREATE TABLE `categories` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `categories`
@@ -44,33 +46,59 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (3, 'Quần short'),
 (4, 'Áo thun nữ'),
 (5, 'Áo thun nam'),
-(6, 'Áo khoác');
+(6, 'Áo khoác'),
+(7, 'Ão láº¡nh');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order`
+-- Cấu trúc bảng cho bảng `order_detail`
 --
 
-CREATE TABLE `order` (
-  `order_id` int(11) NOT NULL,
-  `order_status` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
-  `order_total_price` float NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `or_detail`
---
-
-CREATE TABLE `or_detail` (
+DROP TABLE IF EXISTS `order_detail`;
+CREATE TABLE IF NOT EXISTS `order_detail` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `price` float NOT NULL,
-  `quatity` int(11) NOT NULL
+  `quatity` int(11) NOT NULL,
+  KEY `order_orderdetail_FK` (`order_id`),
+  KEY `orderdetail_product_fk` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_detail`
+--
+
+INSERT INTO `order_detail` (`order_id`, `product_id`, `price`, `quatity`) VALUES
+(1, 4, 200000, 2),
+(1, 5, 485000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_product`
+--
+
+DROP TABLE IF EXISTS `order_product`;
+CREATE TABLE IF NOT EXISTS `order_product` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_status` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
+  `order_total_price` float NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `receiver` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
+  `to_address` text COLLATE utf8_vietnamese_ci NOT NULL,
+  `phone_number` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_methods` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_product`
+--
+
+INSERT INTO `order_product` (`order_id`, `order_status`, `order_total_price`, `user_id`, `receiver`, `to_address`, `phone_number`, `created_at`, `payment_methods`) VALUES
+(1, 'Hoàn thành', 885000, 5, 'User1', '33 Cách Mạng, phường Tân Thành, quận Tân Phú', '0834333860', '2022-01-01 22:35:25', 'Thanh toán khi nhận hàng');
 
 -- --------------------------------------------------------
 
@@ -78,27 +106,30 @@ CREATE TABLE `or_detail` (
 -- Cấu trúc bảng cho bảng `product`
 --
 
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL,
   `product_info` text COLLATE utf8_vietnamese_ci NOT NULL,
   `product_price` float NOT NULL,
   `product_img` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
   `product_price_discount` int(11) NOT NULL,
-  `category` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+  `category` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_category_fk` (`category`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`id`, `product_name`, `product_info`, `product_price`, `product_img`, `product_price_discount`, `category`) VALUES
-(1, 'QUẦN THỂ THAO NAM ACTIVE TS', 'Quần short thể thao', 79000, 'vendors/images/product/Quần short.jpg', 0, 3),
-(2, 'QUẦN SHORT GIÓ V3 TS	', 'Quần short chất lượng cao', 282000, 'vendors/images/product/quần short 2.jpg', 169000, 3),
-(3, 'Áo croptop in Sun Kissed', 'Áo thời trang', 210000, 'vendors/images/product/áo thun nữ.jpg', 0, 4),
-(4, 'ÁO KHOÁC TÚI KHÓA KÉO AB657	', 'Áo khoác nữ thời trang', 265000, 'vendors/images/product/áo khoác 1.jpg', 200000, 6),
-(5, 'Áo khoác Jockey chống tia UV', 'Áo khoác thời trang bảo vệ cơ thể', 485000, 'vendors/images/product/áo khoác nam.jpg', 0, 6),
-(6, 'ÁO THUN POLO NAM TS	', 'Áo thun nam cao cấp', 183000, 'vendors/images/product/áo thun man.jpg', 150000, 5);
+(1, 'QUẦN THỂ THAO NAM ACTIVE TS', 'Quần short thể thao', 79000, 'vendors/images/product/QuanShort.jpg', 0, 3),
+(2, 'QUẦN SHORT GIÓ V3 TS	', 'Quần short chất lượng cao', 282000, 'vendors/images/product/QuanShort2.jpg', 169000, 3),
+(3, 'Áo croptop in Sun Kissed', 'Áo thời trang', 210000, 'vendors/images/product/AoThunNu.jpg', 0, 4),
+(4, 'ÁO KHOÁC TÚI KHÓA KÉO AB657	', 'Áo khoác nữ thời trang', 265000, 'vendors/images/product/AoKhoac1.jpg', 200000, 6),
+(5, 'Áo khoác Jockey chống tia UV', 'Áo khoác thời trang bảo vệ cơ thể', 485000, 'vendors/images/product/AoKhoacNam.jpg', 0, 6),
+(6, 'ÁO THUN POLO NAM TS	', 'Áo thun nam cao cấp', 183000, 'vendors/images/product/AoThunNam.jpg', 150000, 5);
 
 -- --------------------------------------------------------
 
@@ -106,15 +137,17 @@ INSERT INTO `product` (`id`, `product_name`, `product_info`, `product_price`, `p
 -- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL,
   `email` varchar(30) COLLATE utf8_vietnamese_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sex` tinyint(1) NOT NULL,
-  `role` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+  `role` tinyint(1) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
@@ -123,82 +156,18 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `date_created`, `sex`, `role`) VALUES
 (1, 'Phuc', 'phuc@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-28 20:47:43', 0, 0),
 (2, 'Vy', 'vy@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-28 20:47:43', 1, 0),
-(3, 'User1', 'user1@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-28 20:49:17', 0, 1),
-(4, 'User2', 'user2@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-28 20:49:17', 0, 1);
-
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Chỉ mục cho bảng `order`
---
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`order_id`);
-
---
--- Chỉ mục cho bảng `or_detail`
---
-ALTER TABLE `or_detail`
-  ADD KEY `order_orderdetail_FK` (`order_id`),
-  ADD KEY `orderdetail_product_fk` (`product_id`);
-
---
--- Chỉ mục cho bảng `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_category_fk` (`category`);
-
---
--- Chỉ mục cho bảng `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `categories`
---
-ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT cho bảng `order`
---
-ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+(5, 'User1', 'user1@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-31 22:48:51', 0, 1),
+(6, 'User2', 'user2@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2021-12-31 22:48:51', 1, 1);
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Các ràng buộc cho bảng `or_detail`
+-- Các ràng buộc cho bảng `order_detail`
 --
-ALTER TABLE `or_detail`
-  ADD CONSTRAINT `order_orderdetail_FK` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `order_orderdetail_FK` FOREIGN KEY (`order_id`) REFERENCES `order_product` (`order_id`),
   ADD CONSTRAINT `orderdetail_product_fk` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
