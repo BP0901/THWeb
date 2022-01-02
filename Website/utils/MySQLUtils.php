@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include '../config.php';
 class MySQLUtils{
     private $host;
     private $dbName;
@@ -40,7 +40,7 @@ class MySQLUtils{
             self::$conn = new PDO("mysql:host=$this->host;dbname=$this->dbName", $this->userName, $this->password);
             // set the PDO error mode to exception
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            return self::$conn;
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
