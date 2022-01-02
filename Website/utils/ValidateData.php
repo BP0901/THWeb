@@ -8,55 +8,10 @@ function checkLengthPw($password){
     return strlen($password) > 7 ? TRUE : FALSE;
 }
 
-function checkProduct($product_img, $product_name, $product_desc, $product_price_cur, $product_price_sale){
-    $error = "";
-    $imageType=array("image/png", "image/jpeg", "image/bmp");
-
-    if(empty($product_img['name'])){
-        $error.="Chưa thêm hình!";
-    }
-    else if($product_img["error"]!=0){
-        $error.="Lỗi file hình!";
-    }
-    else if(!in_array($product_img["type"],$imageType)){
-        $error.="Không phải file hình!";
-    }
-    if(empty($product_name)){
-        $error .= "Chưa nhập tên sản phẩm";
-    }
-    if(empty($product_desc)){
-        $error .= "Chưa nhập mô tả cho sản phẩm";
-    }
-    if(empty($product_price_cur)){
-        $error .= "Chưa nhập giá sản phẩm";
-    }
-    if($product_price_cur < 0){
-        $error .= "Giá sản phẩm âm";
-    }
-    if($product_price_sale < 0){
-        $error .= "Giá sale sản phẩm âm";
-    }
-
-    return $error;
-}
-function checkProductUpdate($product_name, $product_desc, $product_price_cur, $product_price_sale){
-    $error = "";
-
-    if(empty($product_name)){
-        $error .= "Chưa nhập tên sản phẩm kìa";
-    }
-    if(empty($product_desc)){
-        $error .= "Chưa nhập mô tả cho sản phẩm";
-    }
-    if(empty($product_price_cur)){
-        $error .= "Chưa nhập giá sản phẩm";
-    }
-    if($product_price_cur < 0){
-        $error .= "Giá sản phẩm âm";
-    }
-    if($product_price_sale < 0){
-        $error .= "Giá sale sản phẩm âm";
-    }
-
-    return $error;
+function checkOrder($receiver, $address, $phoneNumber){
+    $err = "";
+    if(empty($receiver)) $err .= "Bạn chưa nhập tên người nhận";
+    if(empty($address)) $err .= "Bạn chưa nhập địa chỉ";
+    if(empty($phoneNumber)) $err .= "Bạn chưa nhập số điện thoại";
+    return $err;
 }

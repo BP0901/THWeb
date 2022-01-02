@@ -4,8 +4,8 @@ class User{
     private string $userName;
     private string $email;
     private string $password;
-    private bool $sex;
-    private bool $role;
+    private int $sex;
+    private int $role;
 
     public function __construct($userName, $email, $password, $sex, $role = 0)
     {
@@ -48,17 +48,23 @@ class User{
         return $this->sex;
     }
 
+    public function isRole(){
+        return $this->role;
+    }
+
     public function insertUser(){
         $dbCon = new MySQLUtils();
-        $query = "INSERT INTO users (username, email, password, sex) 
-        VALUES (:username, :email, :password, :sex)";
+        $query = "INSERT INTO users (username, email, password, sex, role) 
+        VALUES (:username, :email, :password, :sex, :role)";
         $param = [
             ":username"=>$this->getUserName(), 
             ":email"=>$this->getEmail(), 
             ":password"=>$this->getPassword(), 
-            ":sex"=>$this->isSex()
+            ":sex"=>$this->isSex(),
+            ":role"=>$this->isRole()
         ];
         $dbCon->insertData($query, $param);
+        $dbCon->disconnect();
     }
 
     public function getUserByEmail(){
@@ -86,13 +92,17 @@ class User{
             ":password"=>$this->getPassword(), 
             ":sex"=>$this->isSex()
         ];
-        return $dbCon->updateData($query, $param);
+        $count = $dbCon->updateData($query, $param);
+        $dbCon->disconnect();
+        return $count;
     }
 
     public function deleteUser(){
         $dbCon = new MySQLUtils();
         $query = "DELETE from users where email = :email";
         $param = [":email"=>$this->getEmail()];
-        return $dbCon->deleteData($query, $param);
+        $count = $dbCon->deleteData($query, $param);
+        $dbCon->disconnect();
+        return $count;
     }
 }

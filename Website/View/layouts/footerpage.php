@@ -98,12 +98,12 @@
         <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4>Đăng Nhận Và Đăng Ký</h4>
-          <form class="aa-login-form" action="">
+          <form class="aa-login-form" action="../controller/user-controller.php" method="POST" >
             <label for="">Tên Đăng Nhập Hoặc Email<span>*</span></label>
-            <input type="text" placeholder="Username or email">
+            <input type="text" placeholder="Email" name="email">
             <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
-            <button class="aa-browse-btn" type="submit">Đăng Nhập</button>
+            <input type="password" placeholder="Password" name="password">
+            <button class="aa-browse-btn" name="grp_user_controller" value="user_login" type="submit">Đăng Nhập</button>
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Lưu Tài Khoản </label>
             <p class="aa-lost-password"><a href="#">Quên Mật Khẩu?</a></p>
             <div class="aa-register-now">

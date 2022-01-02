@@ -48,7 +48,21 @@
                   <li class="hidden-xs"><a href="wishlist.php">Danh Sách Yêu Thích</a></li>
                   <li class="hidden-xs"><a href="cart.php">Giỏ Hàng</a></li>
                   <li class="hidden-xs"><a href="checkout.php">Thanh Toán</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng Nhập</a></li>
+                  <?php 
+                    session_start();
+                    if(isset($_SESSION["username"])){ ?>
+                      <li class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Xin chào <?php echo $_SESSION["username"] ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+                          <a class="dropdown-item" href="../controller/logout-controller.php">Đăng xuất</a>
+                        </div>
+                    </li>
+                    <?php } else { ?>
+                      <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng Nhập</a></li>
+                    <?php } ?>  
                 </ul>
               </div>
             </div>
