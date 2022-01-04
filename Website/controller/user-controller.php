@@ -2,8 +2,6 @@
     include '../utils/ValidateData.php';
     include '../utils/MySQLUtils.php';
     include '../Model/User.php';
-    // include '../PHPMailer/class.smtp.php';
-    // include "../PHPMailer/class.phpmailer.php";
     if(!isset($_SESSION)) session_start();
 
     class UserController{
@@ -71,6 +69,7 @@
                 $txtUsername = trim($_POST['txtUsername']);
                 $txtEmail = trim($_POST['txtEmail']);
                 $txtPassword = trim($_POST['txtPassword']);
+                $txtRePassword = trim($_POST['txtRePassword']);
                 $radGender = $_POST['radGender'];
 
                 if(empty($txtUsername)){
@@ -88,10 +87,16 @@
                             alert("Bạn chưa nhập password");
                             window.history.back();
                         </script>';
+                } else if(strcmp($txtPassword, $txtRePassword) !== 0){
+                        echo '<script>
+                            alert("Nhập lại Password chưa đúng!");
+                            window.history.back();
+                            </script>';
+                            break;
                 }else{
                     if(checkEmail($txtEmail)){
                         $md5Password = md5($txtPassword);
-                        $sex = $radGender == "Nam" ? true : false;
+                        $sex = $radGender == "Nam" ? 0 : 1;
                         $newUser = new User($txtUsername, $txtEmail, $md5Password, $sex);
                         $data = $userControl->getUserByEmail($newUser);
 

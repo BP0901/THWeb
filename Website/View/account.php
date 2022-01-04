@@ -137,12 +137,27 @@
                             <div class="col-md-6">
                                 <div class="aa-myaccount-register">
                                     <h4>Đăng Kí</h4>
-                                    <form action="" class="aa-login-form">
-                                        <label for="">Tên tài khoản & Email Người Dùng<span>*</span></label>
-                                        <input type="text" placeholder="Username or email">
+                                    <form action="../controller/user-controller.php" method="post" class="aa-login-form">
+                                        <label for="">Email<span>*</span></label>
+                                        <input type="text" placeholder="Email" name="txtEmail">
+                                        <label for="">Username<span>*</span></label>
+                                        <input type="text" placeholder="Username" name="txtUsername">
+                                        <label for="">Giới tính <span>*</span></label>
+                                        <div>
+                                            <input style="width: auto; height: auto" type="radio" name="radGender" value="Nam" checked>
+                                            <label class="form-check-label" for="radGender">
+                                                Nam
+                                            </label>
+                                            <input style="width: auto; height: auto" type="radio" name="radGender" value="Nữ">
+                                            <label class="form-check-label" for="radGender">
+                                                Nữ
+                                            </label>
+                                        </div>
                                         <label for="">Password<span>*</span></label>
-                                        <input type="password" placeholder="Password">
-                                        <button type="submit" class="aa-browse-btn">Đăng Ký</button>
+                                        <input type="password" placeholder="Password" name="txtPassword">
+                                        <label for="">Nhập lại Password<span>*</span></label>
+                                        <input type="password" placeholder="Password" name="txtRePassword">
+                                        <button type="submit" name="grp_user_controller" value="user_register" class="aa-browse-btn">Đăng Ký</button>
                                     </form>
                                 </div>
                             </div>
