@@ -7,7 +7,7 @@ class User{
     private int $sex;
     private int $role;
 
-    public function __construct($userName, $email, $password, $sex, $role = 0)
+    public function __construct($userName, $email, $password, $sex, $role = 1)
     {
         $this->userName = $userName;
         $this->email = $email;
@@ -86,11 +86,12 @@ class User{
 
     public function updateUser(){
         $dbCon = new MySQLUtils();
-        $query = "UPDATE users set username = :username, password = :password, sex = :sex where email = :email";
+        $query = "UPDATE users SET username = :username, password = :passwor, sex = :sex WHERE email = :email";
         $param = [
             ":username"=>$this->getUserName(),  
-            ":password"=>$this->getPassword(), 
-            ":sex"=>$this->isSex()
+            ":passwor"=>$this->getPassword(), 
+            ":sex"=>$this->isSex(),
+            ":email"=>$this->getEmail()
         ];
         $count = $dbCon->updateData($query, $param);
         $dbCon->disconnect();

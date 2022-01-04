@@ -127,12 +127,42 @@
 
             case 'update':
                 $newName = trim($_POST['txt_username']);
-                $newEmail = trim($_POST['txt_email']);
+                $Email = trim($_SESSION['email']);
                 $newSex = trim($_POST['rad_gender']);
                 $newPass = trim($_POST['txt_password']);
+                $rePass = trim($_POST['txt_re_password']);
 
-                var_dump($newName, $newEmail, $newSex, $newPass);
-                die;
+                if(empty($newName)){
+                    echo '<script>
+                        alert("Username chưa được nhập!");
+                        window.history.back();
+                        </script>';
+                        break;
+                }
+                if(empty($newPass)){
+                    echo '<script>
+                        alert("Password chưa được nhập!");
+                        window.history.back();
+                        </script>';
+                        break;
+                }
+                if(strcmp($newPass, $rePass) !== 0){
+                    echo '<script>
+                        alert("Nhập lại Password chưa đúng!");
+                        window.history.back();
+                        </script>';
+                        break;
+                }
+
+                $updateUser = new User($newName, $Email, md5($newPass), $newSex);
+                $userControl = new UserController();
+                $userControl->updateUser($updateUser);
+                // var_dump($newName, $Email, $newSex, $newPass, $rePass);
+                //  var_dump($updateUser);
+                echo '<script>
+                alert("Cập nhật thành công!");
+                window.history.back();
+                </script>';
                 break;
             case 'lost_pass':
                 $txtEmail = trim($_POST['mail_to']);
