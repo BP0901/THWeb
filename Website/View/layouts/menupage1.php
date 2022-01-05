@@ -49,7 +49,7 @@
                   <li class="hidden-xs"><a href="cart.php">Giỏ Hàng</a></li>
                   <li class="hidden-xs"><a href="checkout.php">Thanh Toán</a></li>
                   <?php 
-                    session_start();
+                    // session_start();
                     if(isset($_SESSION["username"])){ ?>
                       <li class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

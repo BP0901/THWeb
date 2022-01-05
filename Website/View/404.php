@@ -13,7 +13,7 @@
 
 
   <!-- Start header section -->
-  <?php include 'menupage1.php'?>
+  <?php include 'layouts/menupage1.php'?>
     <!-- / header top  -->
 
     <!-- start header bottom  -->
@@ -34,7 +34,7 @@
   </header>
   <!-- / header section -->
   <!-- menu -->
- <?php include 'menupage2.php'?>
+ <?php include 'layouts/menupage2.php'?>
   <!-- / menu -->  
  
   
@@ -56,7 +56,7 @@
   <!-- / 404 error section -->
 
   <!-- Subscribe section -->
-  <?php include 'layouts/subscribesection'?>
+  <?php include 'layouts/subscribesection.php'?>
   <!-- / Subscribe section -->
 
   <!-- footer -->  

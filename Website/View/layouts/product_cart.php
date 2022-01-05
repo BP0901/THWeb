@@ -1,0 +1,26 @@
+<?php
+// Layout product theo chiều dọc
+function product($product, $class = "single_product"){
+    echo '  <li>
+                          <figure>
+                            <a  class="aa-product-img" href="product-detail.php?prod='.$product["id"].'"><img width="250" height="300" src="../Adminpage/view/'.$product["product_img"].'" alt="polo shirt img"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Thêm vào giỏ đồ</a>
+                             <figcaption>
+                              <h4 class="aa-product-title"><a href="product-detail.php?prod='.$product["id"].'">'.$product["product_name"].'</a></h4>';
+                              if($product["product_price_discount"] != 0){
+                                    echo '<span class="aa-product-price">'.number_format($product["product_price_discount"]).'<sup>đ</sup></span><span class="aa-product-price"><del>'.number_format($product["product_price"]).'<sup>đ</sup></del></span>';
+                              } else {
+                                    echo '<span class="aa-product-price">'.number_format($product["product_price"]).'<sup>đ</sup></span>';
+                              }
+                              
+                            echo '</figcaption>
+                          </figure>                         
+                          <div class="aa-product-hvr-content">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                          </div>';
+                          if($product["product_price_discount"] != 0){
+                            echo '<span class="aa-badge aa-sale" href="#">SALE!</span>';
+                          }
+                        echo '</li>';
+}
