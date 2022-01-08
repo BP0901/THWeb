@@ -157,9 +157,13 @@
                                             </p>
                                         </div>
                                         <div class="aa-prod-view-bottom">
-                                            <a class="aa-add-to-cart-btn" href="#">Thêm vào giỏ đồ</a>
-                                            <a class="aa-add-to-cart-btn" href="#">Danh sách yêu thích</a>
-                                            <a class="aa-add-to-cart-btn" href="#">So Sánh</a>
+                                        <form action="../controller/order-controller.php" method="post">
+                                            <input type="text" name="txt_id" value='<?php echo $data[0]['id']; ?>' hidden/>
+                                            <button type="submit" name="order_action" value="add" class="aa-add-to-cart-btn"href="cart.php">Thêm vào giỏ đồ</button>
+                                            <button class="aa-add-to-cart-btn" href="#">Danh sách yêu thích</button>
+                                            <button class="aa-add-to-cart-btn" href="#">So Sánh</button>    
+                                        </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
