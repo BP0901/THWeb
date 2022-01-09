@@ -19,7 +19,7 @@ $cate = $category->getAllCategory();
 
 <body>
     <!-- wpf loader Two -->
-    <?php include'layouts/loading.php' ?>
+    <!-- <?php include'layouts/loading.php' ?> -->
     <!-- / wpf loader Two -->
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
