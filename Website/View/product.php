@@ -5,14 +5,28 @@
   spl_autoload_register('loadClass');
   
   $id = $_GET['category'];
+  $data = array();
 
-  $category = new Category($id,"");
-  $cate = $category->getCategoryById();
-  $cateData = $category->getAllCategory();
+  if($id == -1){
+    $search = $_GET['txt_search'];
+    $product = new Product("","",0,"",0,0,0,0);
+    $allProd = $product->getAllProduct();
+    for($i = 0 ; $i < count($allProd) ; $i++){
+        if(strpos(strtolower($allProd[$i]['product_name']),strtolower($search)) != false){
+          $data =  $allProd[$i];     
+        }
+    }
+  }else{
+    $category = new Category($id,"");
+    $cate = $category->getCategoryById();
+    $cateData = $category->getAllCategory();
+  
+    $product = new Product("","",0,"",0,0,0,0);
+    $product->setCategory($id);
+    $data = $product->getProductByCategory();
+  }
 
-  $product = new Product("","",0,"",0,0,0,0);
-  $product->setCategory($id);
-  $data = $product->getProductByCategory();
+  
 
 
   ?>
@@ -65,14 +79,19 @@
 
     <!-- catg header banner section -->
     <section id="aa-catg-head-banner">
-        <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+        <img src="img/bannernu.jpg" alt="fashion img">
         <div class="aa-catg-head-banner-area">
             <div class="container">
                 <div class="aa-catg-head-banner-content">
                     <h2>Thời Trang</h2>
                     <ol class="breadcrumb">
                         <li><a href="home.php">Trang Chủ</a></li>
-                        <li class="active"><?php echo $cate[0]['category_name']  ?></li>
+                        <?php if($id != -1){?>
+                            <li class="active"><?php echo $cate[0]['category_name']  ?></li>
+                        <?php } else { ?>
+                            <li class="active">Tìm kiếm</li>
+                        <?php } ?>
+
                     </ol>
                 </div>
             </div>
@@ -165,7 +184,7 @@
                                 <a href="#">Áo</a>
                                 <a href="#">Quần</a>
                                 <a href="#">Làm đẹp</a>
-                                
+
                             </div>
                         </div>
                         <!-- single sidebar -->
@@ -200,7 +219,7 @@
                                 <a class="aa-color-olive" href="#"></a>
                                 <a class="aa-color-orchid" href="#"></a>
                             </div>
-                        </div>   
+                        </div>
                     </aside>
                 </div>
 

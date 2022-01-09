@@ -62,7 +62,7 @@
 
     <!-- catg header banner section -->
     <section id="aa-catg-head-banner">
-        <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+        <img src="img/bannernu.jpg" alt="fashion img">
         <div class="aa-catg-head-banner-area">
             <div class="container">
                 <div class="aa-catg-head-banner-content">
@@ -157,9 +157,13 @@
                                             </p>
                                         </div>
                                         <div class="aa-prod-view-bottom">
-                                            <a class="aa-add-to-cart-btn" href="#">Thêm vào giỏ đồ</a>
-                                            <a class="aa-add-to-cart-btn" href="#">Danh sách yêu thích</a>
-                                            <a class="aa-add-to-cart-btn" href="#">So Sánh</a>
+                                        <form action="../controller/order-controller.php" method="post">
+                                            <input type="text" name="txt_id" value='<?php echo $data[0]['id']; ?>' hidden/>
+                                            <button type="submit" name="order_action" value="add" class="aa-add-to-cart-btn"href="cart.php">Thêm vào giỏ đồ</button>
+                                            <button class="aa-add-to-cart-btn" href="#">Danh sách yêu thích</button>
+                                            <button class="aa-add-to-cart-btn" href="#">So Sánh</button>    
+                                        </form>
+                                            
                                         </div>
                                     </div>
                                 </div>

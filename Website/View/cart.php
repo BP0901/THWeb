@@ -50,7 +50,7 @@
 
     <!-- catg header banner section -->
     <section id="aa-catg-head-banner">
-        <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+        <img src="img/banner.jpg" alt="fashion img">
         <div class="aa-catg-head-banner-area">
             <div class="container">
                 <div class="aa-catg-head-banner-content">
@@ -103,12 +103,20 @@
                                                 <?php if($data[$i]->getPriceSale() == 0){?>
                                                     <td><?php echo number_format($data[$i]->getPriceCurrent()); ?><sup>đ</sup></td>
                                                     <?php $total = $amount * $data[$i]->getPriceCurrent(); 
+<<<<<<< HEAD
                                                         $totalPrice += $amount;
+=======
+                                                        $totalPrice += $total;
+>>>>>>> 33ea3c02400b73b2da6499c6d022edb5bb036b35
                                                     ?>
                                                 <?php } else { ?>
                                                     <td><?php echo number_format($data[$i]->getPriceSale()); ?><sup>đ</sup></td>
                                                     <?php $total = $amount * $data[$i]->getPriceSale(); 
+<<<<<<< HEAD
                                                          $totalPrice += $amount;
+=======
+                                                         $totalPrice += $total;
+>>>>>>> 33ea3c02400b73b2da6499c6d022edb5bb036b35
                                                     ?>
                                                 <?php } ?>
                                                 <td><input class="aa-cart-quantity" type="number" min="1" value="<?php echo $amount; ?>"></td>

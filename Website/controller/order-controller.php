@@ -77,7 +77,7 @@ switch ($order_action) {
                     </script>';
             } else {
                 $_SESSION['cart-item'][$id] = $selectedProduct;
-                $_SESSION['cart-item']['amount'][$id] = 1;
+                $_SESSION['amount'][$id] = 1;
                 // die;
                 echo '<script>
                         alert("Thêm vào giỏ hàng thành công");
