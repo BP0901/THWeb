@@ -21,7 +21,7 @@
 <body>
 
     <!-- wpf loader Two -->
-    <!-- <?php include'layouts/loading.php' ?> -->
+    <?php include'layouts/loading.php' ?>
     <!-- / wpf loader Two -->
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
@@ -50,7 +50,7 @@
 
     <!-- catg header banner section -->
     <section id="aa-catg-head-banner">
-        <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+        <img src="img/banner.jpg" alt="fashion img">
         <div class="aa-catg-head-banner-area">
             <div class="container">
                 <div class="aa-catg-head-banner-content">

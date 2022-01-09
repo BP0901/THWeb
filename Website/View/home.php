@@ -20,7 +20,7 @@ $cate = $category->getAllCategory();
 
 <body>
     <!-- wpf loader Two -->
-    <!-- <?php include'layouts/loading.php' ?> -->
+    <?php include'layouts/loading.php' ?>
     <!-- / wpf loader Two -->
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
@@ -64,7 +64,7 @@ $cate = $category->getAllCategory();
                         <!-- single slide item -->
                         <li>
                             <div class="seq-model">
-                                <img data-seq src="img/slider/1.jpg" alt="Men slide img" />
+                                <img data-seq src="img/banner.jpg" alt="Men slide img" />
                             </div>
                             <div class="seq-title">
                                 <span data-seq>Giảm giá đến 75% </span>
@@ -76,7 +76,7 @@ $cate = $category->getAllCategory();
                         <!-- single slide item -->
                         <li>
                             <div class="seq-model">
-                                <img data-seq src="img/slider/2.jpg" alt="Wristwatch slide img" />
+                                <img data-seq src="img/bannernu.jpg" alt="Wristwatch slide img" />
                             </div>
                             <div class="seq-title">
                                 <span data-seq>Giảm giá đến 40%</span>
@@ -88,7 +88,7 @@ $cate = $category->getAllCategory();
                         <!-- single slide item -->
                         <li>
                             <div class="seq-model">
-                                <img data-seq src="img/slider/3.jpg" alt="Women Jeans slide img" />
+                                <img data-seq src="img/banner.jpg" alt="Women Jeans slide img" />
                             </div>
                             <div class="seq-title">
                                 <span data-seq>Giảm giá đến 75%</span>
@@ -100,7 +100,7 @@ $cate = $category->getAllCategory();
                         <!-- single slide item -->
                         <li>
                             <div class="seq-model">
-                                <img data-seq src="img/slider/4.jpg" alt="Shoes slide img" />
+                                <img data-seq src="img/bannernu.jpg" alt="Shoes slide img" />
                             </div>
                             <div class="seq-title">
                                 <span data-seq>Giảm giá đến 75%</span>
@@ -112,7 +112,7 @@ $cate = $category->getAllCategory();
                         <!-- single slide item -->
                         <li>
                             <div class="seq-model">
-                                <img data-seq src="img/slider/5.jpg" alt="Male Female slide img" />
+                                <img data-seq src="img/banner.jpg" alt="Male Female slide img" />
                             </div>
                             <div class="seq-title">
                                 <span data-seq>Giảm giá đến 50%</span>
@@ -143,7 +143,7 @@ $cate = $category->getAllCategory();
                             <div class="col-md-5 no-padding">
                                 <div class="aa-promo-left">
                                     <div class="aa-promo-banner">
-                                        <img src="img/promo-banner-1.jpg" alt="img">
+                                        <img src="img/banner.jpg" alt="img">
                                         <div class="aa-prom-content">
                                             <span>75% Off</span>
                                             <h4><a href="#">For Women</a></h4>
@@ -156,7 +156,7 @@ $cate = $category->getAllCategory();
                                 <div class="aa-promo-right">
                                     <div class="aa-single-promo-right">
                                         <div class="aa-promo-banner">
-                                            <img src="img/promo-banner-3.jpg" alt="img">
+                                            <img src="img/300x220(1).jpg" alt="img">
                                             <div class="aa-prom-content">
                                                 <span>Mặt hàng độc quyền</span>
                                                 <h4><a href="#">For Men</a></h4>
@@ -165,7 +165,7 @@ $cate = $category->getAllCategory();
                                     </div>
                                     <div class="aa-single-promo-right">
                                         <div class="aa-promo-banner">
-                                            <img src="img/promo-banner-2.jpg" alt="img">
+                                            <img src="img/300x220(2).jpg" alt="img">
                                             <div class="aa-prom-content">
                                                 <span>Giảm Giá</span>
                                                 <h4><a href="#">Cho Giày</a></h4>
@@ -174,7 +174,7 @@ $cate = $category->getAllCategory();
                                     </div>
                                     <div class="aa-single-promo-right">
                                         <div class="aa-promo-banner">
-                                            <img src="img/promo-banner-4.jpg" alt="img">
+                                            <img src="img/300x220(3).jpg" alt="img">
                                             <div class="aa-prom-content">
                                                 <span>Điểm Mới</span>
                                                 <h4><a href="#">Cho Trẻ Em</a></h4>
@@ -183,7 +183,7 @@ $cate = $category->getAllCategory();
                                     </div>
                                     <div class="aa-single-promo-right">
                                         <div class="aa-promo-banner">
-                                            <img src="img/promo-banner-5.jpg" alt="img">
+                                            <img src="img/300x220(4).jpg" alt="img">
                                             <div class="aa-prom-content">
                                                 <span>Giảm giá 25% </span>
                                                 <h4><a href="#">Cho Túi</a></h4>

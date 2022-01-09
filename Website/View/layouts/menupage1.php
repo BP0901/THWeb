@@ -56,7 +56,7 @@
                          Xin chào <?php echo $_SESSION["username"] ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+                          <a class="dropdown-item" href="account.php">Thông tin tài khoản</a>
                           <a class="dropdown-item" href="../controller/logout-controller.php">Đăng xuất</a>
                         </div>
                     </li>

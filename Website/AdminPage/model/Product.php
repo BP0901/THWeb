@@ -22,6 +22,7 @@ class Product {
         $this->category = $category;
     }
 
+
     public function getProductId() {
         return $this->productId;
     }
