@@ -13,9 +13,14 @@
     $allProd = $product->getAllProduct();
     for($i = 0 ; $i < count($allProd) ; $i++){
         if(strpos(strtolower($allProd[$i]['product_name']),strtolower($search)) != false){
-          $data =  $allProd[$i];     
+            if(isset($allProd[$i])){
+                $data =  $allProd[$i];
+            }
+               
         }
+       
     }
+
   }else{
     $category = new Category($id,"");
     $cate = $category->getCategoryById();
@@ -26,7 +31,7 @@
     $data = $product->getProductByCategory();
   }
 
-  
+//    var_dump($data);
 
 
   ?>

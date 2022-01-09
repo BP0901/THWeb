@@ -4,6 +4,7 @@ function loadClass($classname){
 }
 spl_autoload_register('loadClass');
 
+session_start();
 $product = new Product("","",0,"",0,0,0,0);
 $data = $product->getAllProduct();
 
