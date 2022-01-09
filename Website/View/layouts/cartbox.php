@@ -10,7 +10,7 @@
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">Giỏ Hàng</span>
-                  <span class="aa-cart-notify"><?php echo count($_SESSION['amount']); ?></span>
+                  <span class="aa-cart-notify"><?php echo count($datas); ?></span>
                 </a>
                 <div class="aa-cartbox-summary">
                   <ul>
