@@ -9,6 +9,14 @@
     } else {
         $data = array();
     }
+    if(isset($_GET['delete'])){
+        if($_GET['delete']=='true'){
+            $id = $_GET['id'];
+            unset($_SESSION['cart-item'][$id]);
+            unset($_SESSION['amount'][$id]);
+            
+        }
+    }
 //   var_dump($_SESSION['amount']);
 ?>
 <!DOCTYPE html>
@@ -89,13 +97,13 @@
                                             <?php 
                                              $totalPrice = 0;
                                             if(isset($_SESSION['cart-item'])){
-                                            for($i=0 ; $i< count($_SESSION['amount']) ;$i++){ 
+                                            for($i=0 ; $i< count($_SESSION['cart-item']) ;$i++){ 
                                                 $amount = $_SESSION['amount'][$data[$i]->getProductId()];
                                                 $total = 0;
                     
                                             ?>
                                             <tr>
-                                                <td><a class="remove" href="#">
+                                                <td><a class="remove" href="?delete=true&&id=<?php echo $data[$i]->getProductId(); ?>">
                                                         <fa class="fa fa-close"></fa>
                                                     </a></td>
                                                 <td><a href="#"><img src="../Adminpage/view/<?php echo $data[$i]->getImg(); ?>" alt="img"></a></td>

@@ -7,7 +7,7 @@
   // var_dump($_SESSION['amount']);
 ?>
 <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="cart.php">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">Giỏ Hàng</span>
                   <span class="aa-cart-notify"><?php echo count($datas); ?></span>
@@ -40,7 +40,6 @@
 
                    
                 </div>
-                <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
             </li>
             <?php } ?>
             <li>
@@ -52,6 +51,6 @@
                 </span>
             </li>
         </ul>
-        <a class="aa-cartbox-checkout aa-primary-btn" href="#">Thanh Toán</a>
+        <a class="aa-cartbox-checkout aa-primary-btn" href="cart.php">Thanh Toán</a>
     </div>
 </div>
